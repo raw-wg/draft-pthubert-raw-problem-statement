@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="US-ASCII"?>
+<!DOCTYPE rfc SYSTEM "rfc2629.dtd">
+<?rfc toc="yes"?>
+<?rfc tocompact="yes"?>
+<?rfc tocdepth="3"?>
+<?rfc tocindent="yes"?>
+<?rfc symrefs="yes"?>
+<?rfc sortrefs="yes"?>
+<?rfc comments="yes"?>
+<?rfc inline="yes"?>
+<?rfc compact="no"?>
+<?rfc subcompact="no"?>
+<?rfc authorship="yes"?>
+<?rfc tocappendix="yes"?>
+
+<rfc category="info" docName="draft-pthubert-raw-problem-statement-02" ipr="trust200902">
+
+<front>
+   <title abbrev="RAW PS">Reliable and Available Wireless Problem Statement</title>
+   <author initials="P" surname="Thubert" fullname="Pascal Thubert" role="editor">
+     <organization abbrev="Cisco Systems">Cisco Systems, Inc</organization>
+     <address>
+       <postal>
+         <street>Building D</street>
+         <street>45 Allee des Ormes - BP1200 </street>
+         <city>MOUGINS - Sophia Antipolis</city>
+         <code>06254</code>
+         <country>FRANCE</country>
+       </postal>
+       <phone>+33 497 23 26 34</phone>
+       <email>pthubert@cisco.com</email>
+     </address>
+   </author>
+
+
+   <date/>
+   <area>Routing Area</area>
+   <workgroup>RAW</workgroup>
+   <keyword>Draft</keyword>
+   <abstract>
+     <t>Due to uncontrolled interferences, including the self-induced multipath fading, deterministic networking can only be approached on wireless links. The radio conditions may change -way- faster than a centralized routing can adapt and reprogram, in particular when the controller is distant and connectivity is slow and limited. RAW separates the routing time scale at which a complex path is recomputed from the forwarding time scale at which the forwarding decision is taken for an individual packet. RAW operates at the forwarded time scale. The RAW problem is to decide, within the redundant solutions that are proposed by the routing, which will be used for each individual packet to provide a DetNet service while minimizing the waste of resources.
+     </t>
+   </abstract>
+</front>
+
+<middle>
+   <section title="Introduction">
+   <t>
+   Bringing determinism in a packet network means eliminating the statistical
+   effects of multiplexing that result in probabilistic jitter and loss.
+   This can be approached with a tight control of the physical resources to
+   maintain the amount of traffic within a budgetted volume of data per unit of
+   time that fits the physical capabilities of the underlying technology, and
+   the use of time-shared resources (bandwidth and buffers) per circuit, and/or
+   by shaping and/or scheduling the packets at every hop.
+
+   </t><t>
+   Wireless networks operate on a shared medium where uncontrolled interference,
+   including the self-induced multipath fading, adds another dimension to the
+   statistical effects that affect the delivery. Scheduling transmissions can
+   alleviate those effects by leveraging diversity in the spatial, time, code,
+   and frequency domains, and provide a Reliable and Available service while
+   preserving energy and optimizing the use of the shared spectrum.
+
+   </t><t>
+   Deterministic Networking is an attempt to mostly eliminate packet loss for a
+   committed bandwidth with a guaranteed worst-case end-to-end latency, even
+   when co-existing with best-effort traffic in a shared network.
+   This innovation is enabled by recent developments in technologies including
+   IEEE 802.1 TSN (for Ethernet LANs) and IETF DetNet (for wired IP networks).
+   It is getting traction in various industries including manufacturing, online
+   gaming, professional A/V, cellular radio and others, making possible
+   many cost and performance optimizations.
+   </t><t>
+   Reliable and Available Wireless (RAW) networking services extend DetNet
+   to approach end-to-end deterministic performances in a network with
+   scheduled wireless segments, possibly combined with wired segments, and
+   possibly sharing physical resources with non-deterministic traffic.
+   The wireless and wired media are fundamentally different at the physical
+   level, and while the generic Problem Statement for DetNet applies to the
+   wired as well as the wireless medium, the methods to achieve RAW will
+   differ from those used to support time-sensitive networking over wires, as
+   a RAW solution will need to address less consistent transmissions, energy
+   conservation and shared spectrum efficiency.
+
+   </t><t>
+   The development of RAW technologies has been lagging behind deterministic
+   efforts for wired systems both at the IEEE and the IETF. But recent efforts
+   at the IEEE and 3GPP indicate that wireless is finally catching up at the
+   lower layer and that it is now possible for the IETF to extend DetNet for
+   wireless segments that are capable of scheduled wireless transmissions.
+
+   </t><t>
+   The intent for RAW is to provide DetNet elements that are specialized for
+   short range radios. From this inheritance, RAW stays agnostic to the radio
+   layer underneath though the capability to schedule transmissions is assumed.
+   How the PHY is programmed to do so, and whether the radio is single-hop
+   or meshed, are unknown at the IP layer and not part of the RAW abstraction.
+
+   </t><t>
+   Still, in order to focus on real-worlds issues and assert the feasibility of
+   the proposed capabilities, RAW will focus on selected technologies that can
+   be scheduled at the lower layers: IEEE Std. 802.15.4 timeslotted channel
+   hopping (TSCH), 3GPP 5G ultra-reliable low latency communications (URLLC),
+   IEEE 802.11ax/be where 802.11be is extreme high throughput (EHT), and L-band
+   Digital Aeronautical  Communications System (LDACS).
+   See <xref target="I-D.thubert-raw-technologies"/> for more.
+
+   </t><t>
+   The establishment of a path is not in-scope for RAW. It may be the product of
+   a centralized Controller Plane as described for DetNet. As opposed to wired
+   networks, the action of installing a path over a set of wireless links
+   may be very slow relative to the speed at which the radio conditions vary,
+   and it makes sense in the wireless case to provide redundant forwarding
+   solutions along a complex path and to leave it to the RAW Network Plane to
+   select which of those forwarding solutions are to be used for a given packet
+   based on the current conditions.
+
+   </t><t>
+   RAW distinguishes the longer time scale at which routes are computed from the
+   the shorter forwarding time scale where per-packet decisions are made.
+   RAW operates at the forwarding time scale on one DetNet flow over one path
+   that is preestablished and installed by means outside of the scope of RAW.
+   The scope of the RAW WG comprises Network plane protocol elements such as OAM
+   and in-band control to improve the RAW operation at the Service and at the
+   forwarding sub-layers, e.g., controlling whether to use packet replication,
+   Hybrid ARQ and coding, with a constraint to limit the use of redundancy when
+   it is really needed, e.g., when a spike of loss is observed.
+   This is discussed in more details in <xref target='rou'/> and the next
+   sections.
+   </t>
+
+   </section><!-- Introduction -->
+
+   <section title="Use Cases and Requirements Served">
+   <t>
+   <xref target="RFC8578"/> presents a number of wireless use cases including
+   Wireless for Industrial Applications.
+   <xref target="I-D.bernardos-raw-use-cases"/> adds a number of use cases that
+   demonstrate the need for RAW capabilities in Pro-Audio, gaming and robotics.
+   </t>
+   </section><!-- Use Cases and Requirements Served -->
+
+   <section anchor="rou" title="Routing Scale vs. Forwarding Scale">
+   <t>
+   RAW extends DetNet to focus on issues that are mostly a concern on wireless
+   links. See <xref target="I-D.ietf-detnet-architecture"/> for more on DetNet.
+   With DetNet, the end-to-end routing can be centralized and can reside
+   outside the network. In wireless, and in particular in a wireless mesh, the
+   path to the controller that performs the route computation and maintenance
+   may be slow and expensive in terms of critical resources such as air time and
+   energy.
+   </t><t>
+   Reaching to the routing computation can be slow in regards to the speed of
+   events that affect the forwarding operation at the radio layer. Due to the
+   cost and latency to perform a route computation, routing is not expected to
+   be sensitive/reactive to transient changes. The abstraction of a link at the
+   routing level is expected to use statistical operational metrics that
+   aggregate the behavior of a link over long periods of time, and represent its
+   availability as a shade of gray as opposed to either up or down.
+   </t><t>
+   In the case of wireless, the changes that affect the forwarding decision can
+   happen frequently and often for shot durations, e.g., a mobile object moves
+   between a transmitter and a receiver, and will cancel the line of sight
+   transmission for a few seconds, or a radar measures the depth of a pool and
+   interferes on a particular channel for a split second.
+   </t><t>
+   There is thus a desire to separate the long term computation of the route and
+   the short term forwarding decision. In such a model, the routing operation
+   computes a complex Track that enables multiple non-equal cost multipath
+   (N-ECMP) forwarding solutions, and leaves it to the forwarding plane to make
+   the per-packet decision of which of these possibilities should be used.
+   </t><t>
+   In the case of wires, the concept is known in traffic engineering where an
+   alternate path can be used upon the detection of a failure in the main path,
+   e.g., using OAM in MPLS-TP or BFD over a collection of SD-WAN tunnels. RAW
+   formalizes a routing time scale that is order of magnitude longer than the
+   forwarding time scale, and separates the protocols and metrics that are used
+   at both scales. Routing can operate on long term statistics such as delivery
+   ratio over minutes to hours, but as a first approximation can ignore flapping.
+   On the other hand, the RAW forwarding decision is made at packet speed, and
+   uses information that must be pertinent at the present time for the current
+   transmission.
+   </t>
+   </section> <!-- Routing and Forwarding -->
+
+   <section title="Prerequisites">
+
+   <t>
+   A prerequisite to the RAW work is that an end-to-end routing function
+   computes a complex sub-topology along which forwarding can happen between a
+   source and one or more destinations. For 6TiSCH, this is a Track. The concept
+   of Track is specified in the <xref target="I-D.ietf-6tisch-architecture"/>.
+   Tracks provide a high degree of redundancy and diversity and enable DetNet
+   PREOF, end-to-end network coding, and possibly radio-specific abstracted
+   techniques such as ARQ, overhearing, frequency diversity, time slotting, and
+   possibly others.
+   </t><t>
+   How the routing operation computes the Track is out of scope for RAW.
+   The scope of the RAW operation is one Track, and the goal of the RAW
+   operation is to optimize the use of the Track at the forwarding timescale
+   to maintain the expected service while optimizing the usage of constrained
+   resources such as energy and spectrum.
+   </t><t>
+   Another prerequisite is that an IP link can be established over the radio
+   with some guarantees in terms of service reliability, e.g., it can be relied
+   upon to transmit a packet within a bounded latency and provides a guaranteed
+   BER/PDR outside rare but existing transient outage windows that can last from
+   split  seconds to minutes. The radio layer can be programmed with abstract
+   parameters, and can return an abstract view of the state of the Link to help
+   forwarding decision (think DLEP from MANET). In the layered approach, how the
+   radio manages its PHY layer is out of control and out of scope. Whether it is
+   single hop or meshed is also unknown and out of scope.
+
+   </t>
+
+   </section> <!-- Prerequisites -->
+
+   <section title="Functional Gaps">
+
+   <t>
+   Within a large routed topology, the routing operation builds a particular
+   complex Track with one source and one or more destinations; within the Track,
+   packets may follows different paths and may be subject to RAW forwarding
+   operations that include replication, elimination, retries, overhearing and
+   reordering.
+   </t><t>
+   The RAW forwarding decisions include the selection of points of replication
+   and elimination, how many retries can take place, and a limit of validity for
+   the packet beyond which the packet should be destroyed rather than forwarded
+   uselessly further down the Track.
+   </t><t>
+   The decision to apply the RAW techniques must be done quickly, and depends on
+   a very recent and precise knowledge of the forwarding conditions within the
+   complex Track. There is a need for an observation method to provide the RAW
+   forwarding plane with the specific knowledge of the state of the Track for
+   the type of flow of interest (e.g., for a QoS level of interest). To observe
+   the whole Track in quasi real time, RAW will consider existing tools such as
+   L2-triggers, DLEP, BFD and in-band and out-of-band OAM.
+   </t><t>
+   One possible way of making the RAW forwarding decisions is to make them all
+   at the ingress and express them in-band in the packet, which requires new
+   loose or strict Hop-by-hop signaling. To control the RAW forwarding operation
+   along a Track for the individual packets, RAW may leverage and extend known
+   techniques such as DetNet tagging, Segment Routing (SRv6) or BIER-TE such as
+   done with <xref target="I-D.thubert-bier-replication-elimination"/>.
+   </t><t>
+   An alternate way is to enable each forwarding node to make the RAW forwarding
+   decisions for a packet on its own, based on its knowledge of the expectation
+   (timeliness and reliability) for that packet and a recent observation of the
+   rest of the way across the possible paths within the Track. Information about
+   the service should be placed in the packet and matched with the forwarding
+   node's capabilities and policies.
+   </t><t>
+   In either case, a per-flow state is installed in all intermediate nodes to
+   recognize the flow and determine the forwarding policy to be applied.
+   </t>
+
+   </section> <!-- Functional Gaps -->
+   </middle>
+
+<back>
+   <references title="Normative References">
+
+     <?rfc include='reference.RFC.8578'?> <!-- Deterministic Networking Use Cases -->
+
+     <?rfc include='reference.I-D.ietf-detnet-architecture'?>
+     <?rfc include='reference.I-D.ietf-6tisch-architecture'?>
+     <?rfc include='reference.I-D.thubert-raw-technologies'?>
+     <?rfc include='reference.I-D.bernardos-raw-use-cases'?>
+   </references>
+   <references title="Informative References">
+
+     <?rfc include='reference.I-D.thubert-bier-replication-elimination'?>
+
+     <!--reference anchor="IEEE802154">
+       <front>
+         <title>IEEE Std. 802.15.4, Part. 15.4: Wireless Medium Access
+         Control (MAC) and Physical Layer (PHY) Specifications for Low-Rate
+         Wireless Personal Area Networks
+         </title>
+         <author>
+            <organization>IEEE standard for Information Technology</organization>
+         </author>
+         <date/>
+       </front>
+     </reference -->
+
+     <reference anchor="TEAS" target="https://dataTracker.ietf.org/doc/charter-ietf-teas/">
+       <front>
+         <title>Traffic Engineering Architecture and Signaling</title>
+         <author>
+            <organization>IETF</organization>
+         </author>
+         <date></date>
+       </front>
+     </reference>
+
+     <reference anchor="PCE" target="https://dataTracker.ietf.org/doc/charter-ietf-pce/">
+       <front>
+         <title>Path Computation Element</title>
+         <author>
+            <organization>IETF</organization>
+         </author>
+         <date></date>
+       </front>
+     </reference>
+
+     <reference anchor="CCAMP" target="https://dataTracker.ietf.org/doc/charter-ietf-ccamp/">
+       <front>
+         <title>Common Control and Measurement Plane</title>
+         <author>
+            <organization>IETF</organization>
+         </author>
+         <date></date>
+       </front>
+     </reference>
+
+     <!--reference anchor="IEC62439" target="https://webstore.iec.ch/publication/7018">
+       <front>
+         <title>Industrial communication networks - High availability automation networks - Part 3: Parallel Redundancy Protocol (PRP) and High-availability Seamless Redundancy (HSR) - IEC62439-3</title>
+         <author>
+            <organization>IEC</organization>
+         </author>
+         <date year="2012" />
+       </front>
+     </reference -->
+   </references>
+
+
+
+
+
+</back>
+
+</rfc>

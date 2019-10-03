@@ -32,6 +32,21 @@
      </address>
    </author>
 
+	<author initials="G.Z." surname="Papadopoulos" fullname="Georgios Z. Papadopoulos">
+    	<organization>IMT Atlantique</organization>
+    	<address>
+        	<postal>
+            	<street>Office B00 - 114A</street>
+             	<street>2 Rue de la Chataigneraie</street>
+             	<city>Cesson-Sevigne - Rennes</city>
+             	<code>35510</code>
+             <country>FRANCE</country>
+         	</postal>
+         	<phone>+33 299 12 70 04</phone>
+         	<email>georgios.papadopoulos@imt-atlantique.fr</email>
+		</address>
+	</author>
+
 
    <date/>
    <area>Routing Area</area>
@@ -216,6 +231,55 @@
 
    </section> <!-- Prerequisites -->
 
+   <section title="Related Work at The IETF ">
+
+
+   <t>RAW intersects with protocols or practices in development at the IETF as follows:
+   <list style="symbols">
+      <t>
+      The Dynamic Link Exchange Protocol <xref target="RFC8175"/> (DLEP) from
+      <xref target="MANET"/> can be leveraged at each hop to derive generic
+      radio metrics (e.g., based on LQI, RSSI, queueing delays and ETX) on
+      individual hops
+      </t>
+      <t>
+      Operations, Administration and Maintenance (OAM) work at
+      <xref target="DetNet"/> such as <xref target="I-D.mirsky-detnet-ip-oam"/>
+      for the case of the IP Data Plane observes the state of DetNet paths,
+      typically MPLS and IPv6 pseudowires
+      <xref target="I-D.ietf-detnet-data-plane-framework"/>, in the direction of
+      the traffic. RAW needs feedback that flows on the reverse path
+      and gathers instantaneous values from the radio receivers at each hop to
+      inform back the source and replicating relays so they can make optimized
+      forwarding decisions. The work named ICAN may be related and may find a
+      home at RAW.
+      </t>
+      <t>
+      <xref target="BFD"/> detect faults in the path between an ingress and an
+      egress forwarding engines, but is aware of the complexity of a path with
+      replication, and expects bidirectionality. BFD considers delivery as
+      success whereas with RAW the bounded latency can be as important as the
+      delivery itself.
+      </t>
+      <t>
+      <xref target="SPRING"/> and <xref target="BIER"/> define in-band
+      signaling that influences the routing when decided at the head-end on the
+      path. There's already one RAW-related draft at BIER
+      <xref target="I-D.thubert-bier-replication-elimination"/> more may follow.
+      RAW will need new in-band signaling when the decision is distributed,
+      e.g., required chances of reliable delivery to destination within latency.
+      This signaling enables relays to tune retries and replication to be met.
+      </t>
+      <t>
+      <xref target="CCAMP"/> defines protocol-independent metrics and parameters
+      (measurement attributes) for describing links and paths that are required
+      for routing and signaling in technology-specific networks. RAW would be a
+      source of requirements for CCAMP to define metrics that are significant to
+      the focus radios.
+      </t>
+   </list>
+   </t>
+   </section> <!-- Related Work at The IETF -->
    <section title="Functional Gaps">
 
    <t>
@@ -263,6 +327,7 @@
    <references title="Normative References">
 
      <?rfc include='reference.RFC.8578'?> <!-- Deterministic Networking Use Cases -->
+     <?rfc include='reference.RFC.8175'?> <!-- Dynamic Link Exchange Protocol (DLEP) -->
 
      <?rfc include='reference.I-D.ietf-detnet-architecture'?>
      <?rfc include='reference.I-D.ietf-6tisch-architecture'?>
@@ -272,6 +337,8 @@
    <references title="Informative References">
 
      <?rfc include='reference.I-D.thubert-bier-replication-elimination'?>
+     <?rfc include='reference.I-D.mirsky-detnet-ip-oam'?>
+     <?rfc include='reference.I-D.ietf-detnet-data-plane-framework'?>
 
      <!--reference anchor="IEEE802154">
        <front>
@@ -286,6 +353,42 @@
        </front>
      </reference -->
 
+     <reference anchor="MANET" target="https://dataTracker.ietf.org/doc/charter-ietf-manet/">
+       <front>
+         <title> Mobile Ad hoc Networking</title>
+         <author>
+            <organization>IETF</organization>
+         </author>
+         <date></date>
+       </front>
+     </reference>
+     <reference anchor="DetNet" target="https://dataTracker.ietf.org/doc/charter-ietf-detnet/">
+       <front>
+         <title>Deterministic Networking</title>
+         <author>
+            <organization>IETF</organization>
+         </author>
+         <date></date>
+       </front>
+     </reference>
+     <reference anchor="SPRING" target="https://dataTracker.ietf.org/doc/charter-ietf-spring/">
+       <front>
+         <title>Source Packet Routing in Networking</title>
+         <author>
+            <organization>IETF</organization>
+         </author>
+         <date></date>
+       </front>
+     </reference>
+     <reference anchor="BIER" target="https://dataTracker.ietf.org/doc/charter-ietf-bier/">
+       <front>
+         <title>Bit Indexed Explicit Replication</title>
+         <author>
+            <organization>IETF</organization>
+         </author>
+         <date></date>
+       </front>
+     </reference>
      <reference anchor="TEAS" target="https://dataTracker.ietf.org/doc/charter-ietf-teas/">
        <front>
          <title>Traffic Engineering Architecture and Signaling</title>
@@ -306,6 +409,15 @@
        </front>
      </reference>
 
+     <reference anchor="BFD" target="https://dataTracker.ietf.org/doc/charter-ietf-bfd/">
+       <front>
+         <title>Bidirectional Forwarding Detection</title>
+         <author>
+            <organization>IETF</organization>
+         </author>
+         <date></date>
+       </front>
+     </reference>
      <reference anchor="CCAMP" target="https://dataTracker.ietf.org/doc/charter-ietf-ccamp/">
        <front>
          <title>Common Control and Measurement Plane</title>

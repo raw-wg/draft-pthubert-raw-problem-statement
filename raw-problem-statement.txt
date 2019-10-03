@@ -4,12 +4,13 @@
 
 RAW                                                      P. Thubert, Ed.
 Internet-Draft                                             Cisco Systems
-Intended status: Informational                        September 23, 2019
-Expires: March 26, 2020
+Intended status: Informational                           G. Papadopoulos
+Expires: April 5, 2020                                    IMT Atlantique
+                                                         October 3, 2019
 
 
            Reliable and Available Wireless Problem Statement
-                draft-pthubert-raw-problem-statement-01
+                draft-pthubert-raw-problem-statement-02
 
 Abstract
 
@@ -41,23 +42,24 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on March 26, 2020.
+   This Internet-Draft will expire on April 5, 2020.
 
 Copyright Notice
 
    Copyright (c) 2019 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
+
+
+
+
+Thubert & Papadopoulos    Expires April 5, 2020                 [Page 1]
+
+Internet-Draft                   RAW PS                     October 2019
+
+
    This document is subject to BCP 78 and the IETF Trust's Legal
    Provisions Relating to IETF Documents
-
-
-
-Thubert                  Expires March 26, 2020                 [Page 1]
-
-Internet-Draft                   RAW PS                   September 2019
-
-
    (https://trustee.ietf.org/license-info) in effect on the date of
    publication of this document.  Please review these documents
    carefully, as they describe your rights and restrictions with respect
@@ -72,11 +74,12 @@ Table of Contents
    2.  Use Cases and Requirements Served . . . . . . . . . . . . . .   4
    3.  Routing Scale vs. Forwarding Scale  . . . . . . . . . . . . .   4
    4.  Prerequisites . . . . . . . . . . . . . . . . . . . . . . . .   5
-   5.  Functional Gaps . . . . . . . . . . . . . . . . . . . . . . .   5
-   6.  References  . . . . . . . . . . . . . . . . . . . . . . . . .   6
-     6.1.  Normative References  . . . . . . . . . . . . . . . . . .   6
-     6.2.  Informative References  . . . . . . . . . . . . . . . . .   7
-   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .   7
+   5.  Related Work at The IETF  . . . . . . . . . . . . . . . . . .   6
+   6.  Functional Gaps . . . . . . . . . . . . . . . . . . . . . . .   6
+   7.  References  . . . . . . . . . . . . . . . . . . . . . . . . .   7
+     7.1.  Normative References  . . . . . . . . . . . . . . . . . .   7
+     7.2.  Informative References  . . . . . . . . . . . . . . . . .   8
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .   9
 
 1.  Introduction
 
@@ -103,16 +106,17 @@ Table of Contents
    shared network.  This innovation is enabled by recent developments in
    technologies including IEEE 802.1 TSN (for Ethernet LANs) and IETF
    DetNet (for wired IP networks).  It is getting traction in various
+
+
+
+Thubert & Papadopoulos    Expires April 5, 2020                 [Page 2]
+
+Internet-Draft                   RAW PS                     October 2019
+
+
    industries including manufacturing, online gaming, professional A/V,
    cellular radio and others, making possible many cost and performance
    optimizations.
-
-
-
-Thubert                  Expires March 26, 2020                 [Page 2]
-
-Internet-Draft                   RAW PS                   September 2019
-
 
    Reliable and Available Wireless (RAW) networking services extend
    DetNet to approach end-to-end deterministic performances in a network
@@ -159,17 +163,16 @@ Internet-Draft                   RAW PS                   September 2019
    solutions are to be used for a given packet based on the current
    conditions.
 
+
+
+Thubert & Papadopoulos    Expires April 5, 2020                 [Page 3]
+
+Internet-Draft                   RAW PS                     October 2019
+
+
    RAW distinguishes the longer time scale at which routes are computed
    from the the shorter forwarding time scale where per-packet decisions
    are made.  RAW operates at the forwarding time scale on one DetNet
-
-
-
-Thubert                  Expires March 26, 2020                 [Page 3]
-
-Internet-Draft                   RAW PS                   September 2019
-
-
    flow over one path that is preestablished and installed by means
    outside of the scope of RAW.  The scope of the RAW WG comprises
    Network plane protocol elements such as OAM and in-band control to
@@ -215,16 +218,17 @@ Internet-Draft                   RAW PS                   September 2019
    There is thus a desire to separate the long term computation of the
    route and the short term forwarding decision.  In such a model, the
    routing operation computes a complex Track that enables multiple non-
+
+
+
+Thubert & Papadopoulos    Expires April 5, 2020                 [Page 4]
+
+Internet-Draft                   RAW PS                     October 2019
+
+
    equal cost multipath (N-ECMP) forwarding solutions, and leaves it to
    the forwarding plane to make the per-packet decision of which of
    these possibilities should be used.
-
-
-
-Thubert                  Expires March 26, 2020                 [Page 4]
-
-Internet-Draft                   RAW PS                   September 2019
-
 
    In the case of wires, the concept is known in traffic engineering
    where an alternate path can be used upon the detection of a failure
@@ -267,7 +271,59 @@ Internet-Draft                   RAW PS                   September 2019
    radio manages its PHY layer is out of control and out of scope.
    Whether it is single hop or meshed is also unknown and out of scope.
 
-5.  Functional Gaps
+
+
+
+
+
+
+Thubert & Papadopoulos    Expires April 5, 2020                 [Page 5]
+
+Internet-Draft                   RAW PS                     October 2019
+
+
+5.  Related Work at The IETF
+
+   RAW intersects with protocols or practices in development at the IETF
+   as follows:
+
+   o  The Dynamic Link Exchange Protocol [RFC8175] (DLEP) from [MANET]
+      can be leveraged at each hop to derive generic radio metrics
+      (e.g., based on LQI, RSSI, queueing delays and ETX) on individual
+      hops
+
+   o  Operations, Administration and Maintenance (OAM) work at [DetNet]
+      such as [I-D.mirsky-detnet-ip-oam] for the case of the IP Data
+      Plane observes the state of DetNet paths, typically MPLS and IPv6
+      pseudowires [I-D.ietf-detnet-data-plane-framework], in the
+      direction of the traffic.  RAW needs feedback that flows on the
+      reverse path and gathers instantaneous values from the radio
+      receivers at each hop to inform back the source and replicating
+      relays so they can make optimized forwarding decisions.  The work
+      named ICAN may be related and may find a home at RAW.
+
+   o  [BFD] detect faults in the path between an ingress and an egress
+      forwarding engines, but is aware of the complexity of a path with
+      replication, and expects bidirectionality.  BFD considers delivery
+      as success whereas with RAW the bounded latency can be as
+      important as the delivery itself.
+
+   o  [SPRING] and [BIER] define in-band signaling that influences the
+      routing when decided at the head-end on the path.  There's already
+      one RAW-related draft at BIER
+      [I-D.thubert-bier-replication-elimination] more may follow.  RAW
+      will need new in-band signaling when the decision is distributed,
+      e.g., required chances of reliable delivery to destination within
+      latency.  This signaling enables relays to tune retries and
+      replication to be met.
+
+   o  [CCAMP] defines protocol-independent metrics and parameters
+      (measurement attributes) for describing links and paths that are
+      required for routing and signaling in technology-specific
+      networks.  RAW would be a source of requirements for CCAMP to
+      define metrics that are significant to the focus radios.
+
+6.  Functional Gaps
 
    Within a large routed topology, the routing operation builds a
    particular complex Track with one source and one or more
@@ -277,9 +333,9 @@ Internet-Draft                   RAW PS                   September 2019
 
 
 
-Thubert                  Expires March 26, 2020                 [Page 5]
+Thubert & Papadopoulos    Expires April 5, 2020                 [Page 6]
 
-Internet-Draft                   RAW PS                   September 2019
+Internet-Draft                   RAW PS                     October 2019
 
 
    The RAW forwarding decisions include the selection of points of
@@ -289,7 +345,7 @@ Internet-Draft                   RAW PS                   September 2019
 
    The decision to apply the RAW techniques must be done quickly, and
    depends on a very recent and precise knowledge of the forwarding
-   conditions withing the complex Track.  There is a need for an
+   conditions within the complex Track.  There is a need for an
    observation method to provide the RAW forwarding plane with the
    specific knowledge of the state of the Track for the type of flow of
    interest (e.g., for a QoS level of interest).  To observe the whole
@@ -300,8 +356,8 @@ Internet-Draft                   RAW PS                   September 2019
    them all at the ingress and express them in-band in the packet, which
    requires new loose or strict Hop-by-hop signaling.  To control the
    RAW forwarding operation along a Track for the individual packets,
-   RAW may leverage and extend known techniques such as Segment Routing
-   (SRv6) or BIER-TE such as done with
+   RAW may leverage and extend known techniques such as DetNet tagging,
+   Segment Routing (SRv6) or BIER-TE such as done with
    [I-D.thubert-bier-replication-elimination].
 
    An alternate way is to enable each forwarding node to make the RAW
@@ -316,9 +372,9 @@ Internet-Draft                   RAW PS                   September 2019
    nodes to recognize the flow and determine the forwarding policy to be
    applied.
 
-6.  References
+7.  References
 
-6.1.  Normative References
+7.1.  Normative References
 
    [I-D.bernardos-raw-use-cases]
               Papadopoulos, G., Thubert, P., Theoleyre, F., and C.
@@ -333,9 +389,9 @@ Internet-Draft                   RAW PS                   September 2019
 
 
 
-Thubert                  Expires March 26, 2020                 [Page 6]
+Thubert & Papadopoulos    Expires April 5, 2020                 [Page 7]
 
-Internet-Draft                   RAW PS                   September 2019
+Internet-Draft                   RAW PS                     October 2019
 
 
    [I-D.ietf-detnet-architecture]
@@ -349,14 +405,50 @@ Internet-Draft                   RAW PS                   September 2019
               draft-thubert-raw-technologies-03 (work in progress), July
               2019.
 
+   [RFC8175]  Ratliff, S., Jury, S., Satterwhite, D., Taylor, R., and B.
+              Berry, "Dynamic Link Exchange Protocol (DLEP)", RFC 8175,
+              DOI 10.17487/RFC8175, June 2017,
+              <https://www.rfc-editor.org/info/rfc8175>.
+
    [RFC8578]  Grossman, E., Ed., "Deterministic Networking Use Cases",
               RFC 8578, DOI 10.17487/RFC8578, May 2019,
               <https://www.rfc-editor.org/info/rfc8578>.
 
-6.2.  Informative References
+7.2.  Informative References
+
+   [BFD]      IETF, "Bidirectional Forwarding Detection",
+              <https://dataTracker.ietf.org/doc/charter-ietf-bfd/>.
+
+   [BIER]     IETF, "Bit Indexed Explicit Replication",
+              <https://dataTracker.ietf.org/doc/charter-ietf-bier/>.
 
    [CCAMP]    IETF, "Common Control and Measurement Plane",
               <https://dataTracker.ietf.org/doc/charter-ietf-ccamp/>.
+
+   [DetNet]   IETF, "Deterministic Networking",
+              <https://dataTracker.ietf.org/doc/charter-ietf-detnet/>.
+
+   [I-D.ietf-detnet-data-plane-framework]
+              Varga, B., Farkas, J., Berger, L., Fedyk, D., Malis, A.,
+              Bryant, S., and J. Korhonen, "DetNet Data Plane
+              Framework", draft-ietf-detnet-data-plane-framework-02
+              (work in progress), September 2019.
+
+   [I-D.mirsky-detnet-ip-oam]
+              Mirsky, G. and M. Chen, "Operations, Administration and
+              Maintenance (OAM) for Deterministic Networks (DetNet) with
+              IP Data Plane", draft-mirsky-detnet-ip-oam-00 (work in
+              progress), July 2019.
+
+
+
+
+
+
+Thubert & Papadopoulos    Expires April 5, 2020                 [Page 8]
+
+Internet-Draft                   RAW PS                     October 2019
+
 
    [I-D.thubert-bier-replication-elimination]
               Thubert, P., Eckert, T., Brodard, Z., and H. Jiang, "BIER-
@@ -364,13 +456,19 @@ Internet-Draft                   RAW PS                   September 2019
               Function (PREF) and OAM", draft-thubert-bier-replication-
               elimination-03 (work in progress), March 2018.
 
+   [MANET]    IETF, "Mobile Ad hoc Networking",
+              <https://dataTracker.ietf.org/doc/charter-ietf-manet/>.
+
    [PCE]      IETF, "Path Computation Element",
               <https://dataTracker.ietf.org/doc/charter-ietf-pce/>.
+
+   [SPRING]   IETF, "Source Packet Routing in Networking",
+              <https://dataTracker.ietf.org/doc/charter-ietf-spring/>.
 
    [TEAS]     IETF, "Traffic Engineering Architecture and Signaling",
               <https://dataTracker.ietf.org/doc/charter-ietf-teas/>.
 
-Author's Address
+Authors' Addresses
 
    Pascal Thubert (editor)
    Cisco Systems, Inc
@@ -383,10 +481,24 @@ Author's Address
    Email: pthubert@cisco.com
 
 
+   Georgios Z. Papadopoulos
+   IMT Atlantique
+   Office B00 - 114A
+   2 Rue de la Chataigneraie
+   Cesson-Sevigne - Rennes  35510
+   FRANCE
+
+   Phone: +33 299 12 70 04
+   Email: georgios.papadopoulos@imt-atlantique.fr
 
 
 
 
 
 
-Thubert                  Expires March 26, 2020                 [Page 7]
+
+
+
+
+
+Thubert & Papadopoulos    Expires April 5, 2020                 [Page 9]

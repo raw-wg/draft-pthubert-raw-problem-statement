@@ -188,7 +188,7 @@
       </t>
       <t>
    In the case of wireless, the changes that affect the forwarding decision can
-   happen frequently and often for shot durations, e.g., a mobile object moves
+   happen frequently and often for short durations, e.g., a mobile object moves
    between a transmitter and a receiver, and will cancel the line of sight
    transmission for a few seconds, or a radar measures the depth of a pool and
    interferes on a particular channel for a split second.
@@ -196,7 +196,7 @@
       <t>
    There is thus a desire to separate the long term computation of the route and
    the short term forwarding decision. In such a model, the routing operation
-   computes a complex Track that enables multiple non-equal cost multipath
+   computes a complex Track that enables multiple Non-Equal Cost Multi-Path
    (N-ECMP) forwarding solutions, and leaves it to the forwarding plane to make
    the per-packet decision of which of these possibilities should be used.
       </t>
@@ -259,7 +259,7 @@
       <xref target="RFC8175" format="default"/> from
       <xref target="MANET" format="default"/> can be leveraged at each hop
       to derive generic radio metrics (e.g., based on LQI, RSSI, queueing delays
-      and ETX) on individual hops
+      and ETX) on individual hops.
       </li>
         <li>
       Operations, Administration and Maintenance (OAM) work at
@@ -307,7 +307,7 @@
       <t>
    Within a large routed topology, the routing operation builds a particular
    complex Track with one source and one or more destinations; within the Track,
-   packets may follows different paths and may be subject to RAW forwarding
+   packets may follow different paths and may be subject to RAW forwarding
    operations that include replication, elimination, retries, overhearing and
    reordering.
       </t>

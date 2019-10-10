@@ -5,8 +5,8 @@
 RAW                                                      P. Thubert, Ed.
 Internet-Draft                                             Cisco Systems
 Intended status: Informational                         G.Z. Papadopoulos
-Expires: 10 April 2020                                    IMT Atlantique
-                                                          8 October 2019
+Expires: 11 April 2020                                    IMT Atlantique
+                                                          9 October 2019
 
 
            Reliable and Available Wireless Problem Statement
@@ -42,7 +42,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 10 April 2020.
+   This Internet-Draft will expire on 11 April 2020.
 
 Copyright Notice
 
@@ -53,7 +53,7 @@ Copyright Notice
 
 
 
-Thubert & Papadopoulos    Expires 10 April 2020                 [Page 1]
+Thubert & Papadopoulos    Expires 11 April 2020                 [Page 1]
 
 Internet-Draft                   RAW PS                     October 2019
 
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Thubert & Papadopoulos    Expires 10 April 2020                 [Page 2]
+Thubert & Papadopoulos    Expires 11 April 2020                 [Page 2]
 
 Internet-Draft                   RAW PS                     October 2019
 
@@ -165,7 +165,7 @@ Internet-Draft                   RAW PS                     October 2019
 
 
 
-Thubert & Papadopoulos    Expires 10 April 2020                 [Page 3]
+Thubert & Papadopoulos    Expires 11 April 2020                 [Page 3]
 
 Internet-Draft                   RAW PS                     October 2019
 
@@ -209,7 +209,7 @@ Internet-Draft                   RAW PS                     October 2019
    shade of gray as opposed to either up or down.
 
    In the case of wireless, the changes that affect the forwarding
-   decision can happen frequently and often for shot durations, e.g., a
+   decision can happen frequently and often for short durations, e.g., a
    mobile object moves between a transmitter and a receiver, and will
    cancel the line of sight transmission for a few seconds, or a radar
    measures the depth of a pool and interferes on a particular channel
@@ -217,16 +217,16 @@ Internet-Draft                   RAW PS                     October 2019
 
    There is thus a desire to separate the long term computation of the
    route and the short term forwarding decision.  In such a model, the
-   routing operation computes a complex Track that enables multiple non-
+   routing operation computes a complex Track that enables multiple Non-
 
 
 
-Thubert & Papadopoulos    Expires 10 April 2020                 [Page 4]
+Thubert & Papadopoulos    Expires 11 April 2020                 [Page 4]
 
 Internet-Draft                   RAW PS                     October 2019
 
 
-   equal cost multipath (N-ECMP) forwarding solutions, and leaves it to
+   Equal Cost Multi-Path (N-ECMP) forwarding solutions, and leaves it to
    the forwarding plane to make the per-packet decision of which of
    these possibilities should be used.
 
@@ -277,7 +277,7 @@ Internet-Draft                   RAW PS                     October 2019
 
 
 
-Thubert & Papadopoulos    Expires 10 April 2020                 [Page 5]
+Thubert & Papadopoulos    Expires 11 April 2020                 [Page 5]
 
 Internet-Draft                   RAW PS                     October 2019
 
@@ -285,7 +285,7 @@ Internet-Draft                   RAW PS                     October 2019
    *  The Dynamic Link Exchange Protocol (DLEP) [RFC8175] from [MANET]
       can be leveraged at each hop to derive generic radio metrics
       (e.g., based on LQI, RSSI, queueing delays and ETX) on individual
-      hops
+      hops.
 
    *  Operations, Administration and Maintenance (OAM) work at [DetNet]
       such as [DetNet-IP-OAM] for the case of the IP Data Plane observes
@@ -320,7 +320,7 @@ Internet-Draft                   RAW PS                     October 2019
 
    Within a large routed topology, the routing operation builds a
    particular complex Track with one source and one or more
-   destinations; within the Track, packets may follows different paths
+   destinations; within the Track, packets may follow different paths
    and may be subject to RAW forwarding operations that include
    replication, elimination, retries, overhearing and reordering.
 
@@ -333,7 +333,7 @@ Internet-Draft                   RAW PS                     October 2019
 
 
 
-Thubert & Papadopoulos    Expires 10 April 2020                 [Page 6]
+Thubert & Papadopoulos    Expires 11 April 2020                 [Page 6]
 
 Internet-Draft                   RAW PS                     October 2019
 
@@ -389,7 +389,7 @@ Internet-Draft                   RAW PS                     October 2019
 
 
 
-Thubert & Papadopoulos    Expires 10 April 2020                 [Page 7]
+Thubert & Papadopoulos    Expires 11 April 2020                 [Page 7]
 
 Internet-Draft                   RAW PS                     October 2019
 
@@ -445,7 +445,7 @@ Internet-Draft                   RAW PS                     October 2019
 
 
 
-Thubert & Papadopoulos    Expires 10 April 2020                 [Page 8]
+Thubert & Papadopoulos    Expires 11 April 2020                 [Page 8]
 
 Internet-Draft                   RAW PS                     October 2019
 
@@ -501,4 +501,4 @@ Authors' Addresses
 
 
 
-Thubert & Papadopoulos    Expires 10 April 2020                 [Page 9]
+Thubert & Papadopoulos    Expires 11 April 2020                 [Page 9]

@@ -5,12 +5,12 @@
 RAW                                                      P. Thubert, Ed.
 Internet-Draft                                             Cisco Systems
 Intended status: Informational                         G.Z. Papadopoulos
-Expires: 11 April 2020                                    IMT Atlantique
-                                                          9 October 2019
+Expires: 12 April 2020                                    IMT Atlantique
+                                                         10 October 2019
 
 
            Reliable and Available Wireless Problem Statement
-                draft-pthubert-raw-problem-statement-03
+                draft-pthubert-raw-problem-statement-04
 
 Abstract
 
@@ -42,7 +42,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 11 April 2020.
+   This Internet-Draft will expire on 12 April 2020.
 
 Copyright Notice
 
@@ -53,7 +53,7 @@ Copyright Notice
 
 
 
-Thubert & Papadopoulos    Expires 11 April 2020                 [Page 1]
+Thubert & Papadopoulos    Expires 12 April 2020                 [Page 1]
 
 Internet-Draft                   RAW PS                     October 2019
 
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Thubert & Papadopoulos    Expires 11 April 2020                 [Page 2]
+Thubert & Papadopoulos    Expires 12 April 2020                 [Page 2]
 
 Internet-Draft                   RAW PS                     October 2019
 
@@ -165,7 +165,7 @@ Internet-Draft                   RAW PS                     October 2019
 
 
 
-Thubert & Papadopoulos    Expires 11 April 2020                 [Page 3]
+Thubert & Papadopoulos    Expires 12 April 2020                 [Page 3]
 
 Internet-Draft                   RAW PS                     October 2019
 
@@ -221,7 +221,7 @@ Internet-Draft                   RAW PS                     October 2019
 
 
 
-Thubert & Papadopoulos    Expires 11 April 2020                 [Page 4]
+Thubert & Papadopoulos    Expires 12 April 2020                 [Page 4]
 
 Internet-Draft                   RAW PS                     October 2019
 
@@ -277,7 +277,7 @@ Internet-Draft                   RAW PS                     October 2019
 
 
 
-Thubert & Papadopoulos    Expires 11 April 2020                 [Page 5]
+Thubert & Papadopoulos    Expires 12 April 2020                 [Page 5]
 
 Internet-Draft                   RAW PS                     October 2019
 
@@ -333,7 +333,7 @@ Internet-Draft                   RAW PS                     October 2019
 
 
 
-Thubert & Papadopoulos    Expires 11 April 2020                 [Page 6]
+Thubert & Papadopoulos    Expires 12 April 2020                 [Page 6]
 
 Internet-Draft                   RAW PS                     October 2019
 
@@ -389,7 +389,7 @@ Internet-Draft                   RAW PS                     October 2019
 
 
 
-Thubert & Papadopoulos    Expires 11 April 2020                 [Page 7]
+Thubert & Papadopoulos    Expires 12 April 2020                 [Page 7]
 
 Internet-Draft                   RAW PS                     October 2019
 
@@ -445,7 +445,7 @@ Internet-Draft                   RAW PS                     October 2019
 
 
 
-Thubert & Papadopoulos    Expires 11 April 2020                 [Page 8]
+Thubert & Papadopoulos    Expires 12 April 2020                 [Page 8]
 
 Internet-Draft                   RAW PS                     October 2019
 
@@ -501,4 +501,4 @@ Authors' Addresses
 
 
 
-Thubert & Papadopoulos    Expires 11 April 2020                 [Page 9]
+Thubert & Papadopoulos    Expires 12 April 2020                 [Page 9]

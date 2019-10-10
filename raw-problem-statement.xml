@@ -19,7 +19,7 @@
   <!-- xml2rfc v2v3 conversion 2.32.0 -->
   <front>
     <title abbrev="RAW PS">Reliable and Available Wireless Problem Statement</title>
-    <seriesInfo name="Internet-Draft" value="draft-pthubert-raw-problem-statement-03"/>
+    <seriesInfo name="Internet-Draft" value="draft-pthubert-raw-problem-statement-04"/>
     <author initials="P" surname="Thubert" fullname="Pascal Thubert" role="editor">
       <organization abbrev="Cisco Systems">Cisco Systems, Inc</organization>
       <address>
@@ -363,16 +363,16 @@
         <name>Normative References</name>
 
 
-<xi:include href="https://www.rfc-editor.org/refs/bibxml3/reference.I-D.ietf-6tisch-architecture.xml"/>
+<xi:include href="http://xml2rfc.tools.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-6tisch-architecture.xml"/>
 <!-- 6TiSCH Architecture -->
 
-<xi:include href="https://www.rfc-editor.org/refs/bibxml3/reference.I-D.ietf-detnet-architecture.xml"/>
+<xi:include href="http://xml2rfc.tools.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-detnet-architecture.xml"/>
 <!-- Deterministic Networking Architecture -->
 
-<xi:include href="https://www.rfc-editor.org/refs/bibxml3/reference.I-D.thubert-raw-technologies.xml"/>
+<xi:include href="http://xml2rfc.tools.ietf.org/public/rfc/bibxml3/reference.I-D.thubert-raw-technologies.xml"/>
 <!-- Reliable and Available Wireless Technologies -->
 
-<xi:include href="https://www.rfc-editor.org/refs/bibxml3/reference.I-D.bernardos-raw-use-cases.xml"/>
+<xi:include href="http://xml2rfc.tools.ietf.org/public/rfc/bibxml3/reference.I-D.bernardos-raw-use-cases.xml"/>
 <!-- RAW use cases -->
 
 <xi:include href="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.8578.xml"/>
@@ -389,13 +389,13 @@
         <name>Informative References</name>
 
 
-<xi:include href="https://www.rfc-editor.org/refs/bibxml3/reference.I-D.thubert-bier-replication-elimination.xml"/>
+<xi:include href="http://xml2rfc.tools.ietf.org/public/rfc/bibxml3/reference.I-D.thubert-bier-replication-elimination.xml"/>
 <!-- BIER-TE extensions for Packet Replication and Elimination Function (PREF) and OAM -->
 
-<xi:include href="https://www.rfc-editor.org/refs/bibxml3/reference.I-D.mirsky-detnet-ip-oam.xml"/>
+<xi:include href="http://xml2rfc.tools.ietf.org/public/rfc/bibxml3/reference.I-D.mirsky-detnet-ip-oam.xml"/>
 <!-- Operations, Administration and Maintenance (OAM) for Deterministic Networks (DetNet) with IP Data Plane -->
 
-<xi:include href="https://www.rfc-editor.org/refs/bibxml3/reference.I-D.ietf-detnet-data-plane-framework.xml"/>
+<xi:include href="http://xml2rfc.tools.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-detnet-data-plane-framework.xml"/>
 <!-- DetNet Data Plane Framework -->
 
         <reference anchor="MANET" target="https://dataTracker.ietf.org/doc/charter-ietf-manet/">

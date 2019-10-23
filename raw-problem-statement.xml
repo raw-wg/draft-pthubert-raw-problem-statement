@@ -155,6 +155,51 @@
     </section>    <!-- Introduction -->
 
     <section numbered="true" toc="default">
+      <name>Terminology</name>
+    <t>RAW reuses DetNet terminology defined in <xref target=
+    "I-D.ietf-detnet-architecture" format="default"/> such as PREOF (Packet (hybrid) ARQ, Replication, Elimination and Ordering Functions).
+    It also reuses 6TiSCH terminology defined in <xref target=
+    "I-D.ietf-6tisch-architecture" format="default"/> such as Track.
+    6TiSCH defined the term Track for that complex graph and associated PAREO
+    operations.
+    </t><t>
+    RAW defines the following terms:
+    </t>
+    <dl>
+        <dt>PAREO:</dt><dd>Packet (hybrid) ARQ, Replication, Elimination and
+        Ordering. PAREO is a superset Of DetNet's PREOF that includes
+        radio-specific techniques such as range broadcast, MUMIMO, constructive
+        interference and overhearing, which can be leveraged to increase the
+        reliability.
+        </dd>
+    </dl>
+
+    <t>
+    This document reuses terms that are well-defined in the context of
+    automation to networking and packet delivery, in particular for reliability
+    and availability. In the context of the RAW work, they are defined as
+    follows:
+    </t>
+    <dl>
+        <dt>Reliability:</dt><dd>Reliability is a measure of the probability
+        that an item will perform its intended function for a specified
+        interval under stated conditions. For RAW, the service that is expected
+        is delivery within a bounded latency and a failure is when the packet
+        is either lost or delivered too late.  RAW expresses reliability in
+        terms of Mean Time Between Failure (MTBF) and Maximum Consecutive
+        Failures (MCF).</dd>
+        <dt>Availability:</dt><dd>Availability is a measure of the relative
+        amount of time where a path operates in stated condition, in other words
+        (uptime)/(uptime+downtime). Because a serial wireless path may not be
+        good enough to provide the required availability, and even 2 parallel
+        paths may not be over a longer period of time, the RAW availability
+        implies a path that is a lot more complex than what DetNet typically
+        envisages.
+        </dd>
+    </dl>
+    </section>    <!-- Terminology -->
+
+    <section numbered="true" toc="default">
       <name>Use Cases and Requirements Served</name>
       <t>
    <xref target="RFC8578" format="default"/> presents a number of wireless use
@@ -348,6 +393,19 @@
    recognize the flow and determine the forwarding policy to be applied.
       </t>
     </section>     <!-- Functional Gaps -->
+
+    <section anchor="SecurityConsiderations" numbered="true" toc="default">
+      <name>Security Considerations</name>
+      <t>TBD
+      </t>
+    </section>
+
+    <section numbered="true" toc="default">
+      <name>IANA Considerations</name>
+      <t>This document has no IANA actions.
+      </t>
+    </section>
+
   </middle>
   <back>
 <displayreference   target="I-D.ietf-6tisch-architecture"             to="6TiSCH-ARCH"/>

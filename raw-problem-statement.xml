@@ -156,11 +156,13 @@
 
     <section numbered="true" toc="default">
       <name>Terminology</name>
-    <t>RAW reuses DetNet terminology defined in <xref target=
-    "I-D.ietf-detnet-architecture" format="default"/> such as PREOF (Packet (hybrid) ARQ, Replication, Elimination and Ordering Functions).
-    It also reuses 6TiSCH terminology defined in <xref target=
+    <t>RAW reuses terminology defined for DetNet in <xref target=
+    "I-D.ietf-detnet-architecture" format="default"/>, e.g., PREOF for Packet
+    Replication, Elimination and Ordering Functions.
+    </t><t>
+    RAW also reuses terminology defined for 6TiSCH in <xref target=
     "I-D.ietf-6tisch-architecture" format="default"/> such as Track.
-    6TiSCH defined the term Track for that complex graph and associated PAREO
+    6TiSCH defined the term Track for that complex path with associated PAREO
     operations.
     </t><t>
     RAW defines the following terms:
@@ -168,9 +170,13 @@
     <dl>
         <dt>PAREO:</dt><dd>Packet (hybrid) ARQ, Replication, Elimination and
         Ordering. PAREO is a superset Of DetNet's PREOF that includes
-        radio-specific techniques such as range broadcast, MUMIMO, constructive
-        interference and overhearing, which can be leveraged to increase the
-        reliability.
+        radio-specific techniques such as short range broadcast, MUMIMO,
+        constructive interference and overhearing, which can be
+        leveraged separately or combined to increase the reliability.
+        </dd>
+        <dt>Flapping:</dt><dd>In the context of RAW, a link flaps when the
+        wireles connectivity is interrupted for short transient times,
+        typically of a subsecond duration.
         </dd>
     </dl>
 
@@ -194,7 +200,7 @@
         good enough to provide the required availability, and even 2 parallel
         paths may not be over a longer period of time, the RAW availability
         implies a path that is a lot more complex than what DetNet typically
-        envisages.
+        envisages (a Track).
         </dd>
     </dl>
     </section>    <!-- Terminology -->
@@ -249,9 +255,10 @@
    In the case of wires, the concept is known in traffic engineering where an
    alternate path can be used upon the detection of a failure in the main path,
    e.g., using OAM in MPLS-TP or BFD over a collection of SD-WAN tunnels. RAW
-   formalizes a routing time scale that is order of magnitude longer than the
-   forwarding time scale, and separates the protocols and metrics that are used
-   at both scales. Routing can operate on long term statistics such as delivery
+   formalizes a forwarding time scale that is an order(s) of magnitude shorter
+   than the controler plane routing time scale, and separates the protocols
+   and metrics that are used at both scales.
+   Routing can operate on long term statistics such as delivery
    ratio over minutes to hours, but as a first approximation can ignore flapping.
    On the other hand, the RAW forwarding decision is made at packet speed, and
    uses information that must be pertinent at the present time for the current
@@ -335,7 +342,7 @@
       more may follow.
       RAW will need new in-band signaling when the decision is distributed,
       e.g., required chances of reliable delivery to destination within latency.
-      This signaling enables relays to tune retries and replication to be met.
+      This signaling enables relays to tune retries and replication to meet the required Service Level Agreement (SLA).
       </li>
         <li>
       <xref target="CCAMP" format="default"/> defines protocol-independent

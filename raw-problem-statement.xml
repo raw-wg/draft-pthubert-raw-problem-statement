@@ -90,10 +90,22 @@
    many cost and performance optimizations.
       </t>
       <t>
-   Reliable and Available Wireless (RAW) networking services extend DetNet
-   to approach end-to-end deterministic performances in a network with
-   scheduled wireless segments, possibly combined with wired segments, and
-   possibly sharing physical resources with non-deterministic traffic.
+   The DetNet architecture <xref target="I-D.ietf-detnet-architecture"/> is
+   composed of three planes: a (User)Application Plane, a Controller Plane, and
+   a Network Plane. Reliable and Available Wireless (RAW) extends DetNet to
+   focus on issues that are mostly a concern on wireless links, and inherits
+   the architecture and the planes. A RAW Network Plane is thus a Network Plane
+   inherited by RAW from DetNet.
+   </t><t>
+   RAW networking aims at providing highly available and reliable end-to-end
+   performances in a network with scheduled wireless segments. Uncontrolled
+   interference and transmission obstacles may impede the transmission, and
+   techniques such as beamforming with Multi-User MIMO can only alleviate some
+   of those issues, so the term "deterministic" is usually not associated with
+   short range radios, in particular in the ISM band. This uncertainty places
+   limits to the amount of traffic that can be transmitted on a link while
+   conforming to a RAW Service Level Agreement (SLA) that may vary rapidly.
+   </t><t>
    The wireless and wired media are fundamentally different at the physical
    level, and while the generic Problem Statement for DetNet applies to the
    wired as well as the wireless medium, the methods to achieve RAW will
@@ -134,7 +146,7 @@
    networks, the action of installing a path over a set of wireless links
    may be very slow relative to the speed at which the radio conditions vary,
    and it makes sense in the wireless case to provide redundant forwarding
-   solutions along a complex path and to leave it to the RAW Network Plane to
+   solutions along a complex path and to leave it to the Network Plane to
    select which of those forwarding solutions are to be used for a given packet
    based on the current conditions.
 
@@ -217,26 +229,52 @@
     </section>
     <!-- Use Cases and Requirements Served -->
     <section anchor="rou" numbered="true" toc="default">
-      <name>Routing Scale vs. Forwarding Scale</name>
+      <name>Routing Time Scale vs. Forwarding Time Scale</name>
       <t>
-   RAW extends DetNet to focus on issues that are mostly a concern on wireless
-   links. See <xref target="I-D.ietf-detnet-architecture" format="default"/>
-   for more on DetNet.
    With DetNet, the end-to-end routing can be centralized and can reside
    outside the network. In wireless, and in particular in a wireless mesh, the
    path to the controller that performs the route computation and maintenance
-   may be slow and expensive in terms of critical resources such as air time and
-   energy.
+   expensive in terms of critical resources such as air time and energy.
+      </t><t>
+   Reaching to the routing computation can also be slow in regards to the speed
+   of events that affect the forwarding operation at the radio layer. Due to the
+   cost and latency to perform a route computation, the controller plane is not
+   expected to be sensitive/reactive to transient changes. The abstraction of a
+   link at the routing level is expected to use statistical operational metrics
+   that aggregate the behavior of a link over long periods of time, and
+   represent its availability as shades of gray as opposed to either up or down.
       </t>
-      <t>
-   Reaching to the routing computation can be slow in regards to the speed of
-   events that affect the forwarding operation at the radio layer. Due to the
-   cost and latency to perform a route computation, routing is not expected to
-   be sensitive/reactive to transient changes. The abstraction of a link at the
-   routing level is expected to use statistical operational metrics that
-   aggregate the behavior of a link over long periods of time, and represent its
-   availability as a shade of gray as opposed to either up or down.
-      </t>
+       <figure anchor="Figcontrol">
+              <name>Time Scales</name>
+       <artwork align="center" name="" type="" alt="">
+               +----------------+
+               |  Controller    |
+               |    (PCE)       |
+               |  [Routing ]    |
+               |  [Function]    |
+               +----------------+
+                       ^
+                       |
+                     Slow
+                       |
+   _-._-._-._-._-._-.  |  ._-._-._-._-._-._-._-._-._-._-._-._-
+ _-._-._-._-._-._-._-. | _-._-._-._-._-._-._-._-._-._-._-._-
+                       |
+                   Expensive
+                ....   |  .......
+            ....    .  | .       .....
+         ....          v             ...
+       ..   A-------B-------C---D     ..
+    ...    /  \   /       /      \     ..
+   .      I ----M-------N--zzz-- E  ..
+   ..      \      \   /         /     .
+     ..     P--zzz--Q----------R   ..
+       ..                         ..
+         .......               ...
+                ...............
+  zzz = flapping now
+       </artwork>
+       </figure>
       <t>
    In the case of wireless, the changes that affect the forwarding decision can
    happen frequently and often for short durations, e.g., a mobile object moves
@@ -342,7 +380,7 @@
       more may follow.
       RAW will need new in-band signaling when the decision is distributed,
       e.g., required chances of reliable delivery to destination within latency.
-      This signaling enables relays to tune retries and replication to meet the required Service Level Agreement (SLA).
+      This signaling enables relays to tune retries and replication to meet the required SLA.
       </li>
         <li>
       <xref target="CCAMP" format="default"/> defines protocol-independent
@@ -355,7 +393,7 @@
       </ul>
     </section>    <!-- Related Work at The IETF -->
     <section numbered="true" toc="default">
-      <name>Functional Gaps</name>
+      <name>Problem Statement</name>
       <t>
    Within a large routed topology, the routing operation builds a particular
    complex Track with one source and one or more destinations; within the Track,
@@ -403,7 +441,8 @@
 
     <section anchor="SecurityConsiderations" numbered="true" toc="default">
       <name>Security Considerations</name>
-      <t>TBD
+      <t>This document is a problem statement and does not propose a solution
+      that could yield security issues.
       </t>
     </section>
 
